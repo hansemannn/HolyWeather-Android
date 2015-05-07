@@ -2,6 +2,8 @@
 
 The Java based Android implementation of a weather app based on the <a href="http://openweathermap.org">OpenWeatherMap API</a>. At this time, the app supports the displaying of the weather based on the user's location.
 
+<img src="http://abload.de/img/holyweather-androidzxuk9.png" alt="HolyWeather Android" />
+
 <h2>Requirements</h2>
 * Android 4.0 (SDK Level 14) or greater
 
