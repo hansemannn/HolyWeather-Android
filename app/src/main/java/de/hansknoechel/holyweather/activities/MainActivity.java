@@ -1,6 +1,7 @@
-package de.hansknoechel.holyweather;
+package de.hansknoechel.holyweather.activities;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,25 +10,34 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.hansknoechel.holyweather.R;
+import de.hansknoechel.holyweather.utils.RequestManager;
+import de.hansknoechel.holyweather.models.UserLocation;
+import de.hansknoechel.holyweather.utils.WeatherLocationManager;
+import de.hansknoechel.holyweather.interfaces.LocationCallbackListener;
+import de.hansknoechel.holyweather.interfaces.RequestCallbackListener;
 
 public class MainActivity extends Activity {
     private RequestManager requestManager;
     private WeatherLocationManager locationManager;
+    private RequestCallbackListener requestCallbackListener;
+    private LocationCallbackListener locationCallbackListener;
     private UserLocation userLocation;
     private TextView locationName;
     private TextView locationTemperature;
     private ProgressBar activityIndicator;
 
-    interface RequestCallbackListener {
-        void onResponseFinished(JSONObject result) throws JSONException;
-    }
-
-    interface LocationCallbackListener {
-        void onLocationUpdated(Location location);
-    }
-
+    /**
+     * Initializes the MainActivity.
+     *
+     * @param savedInstanceState  The instanceState of this activity to be used in the super class.
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +63,12 @@ public class MainActivity extends Activity {
         this.locationManager.getCurrentLocation();
     }
 
+    /**
+     * Loads the weather data from the json-based web service.
+     **/
     private void loadData() {
         final String url = "http://api.openweathermap.org/data/2.5/weather?lat="+userLocation.getLatitude()+"&lon="+userLocation.getLongitude()+"&units=metric";
-        this.requestManager.load(url, new RequestCallbackListener(){
+        this.requestManager.load(Request.Method.GET, url, new RequestCallbackListener(){
 
             @Override
             public void onResponseFinished(JSONObject response) throws JSONException {
@@ -70,28 +83,5 @@ public class MainActivity extends Activity {
                 activityIndicator.setVisibility(View.INVISIBLE);
             }
         });
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
