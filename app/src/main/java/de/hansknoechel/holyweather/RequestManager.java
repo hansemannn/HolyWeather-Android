@@ -1,4 +1,4 @@
-package hansknoechel.de.holyweather;
+package de.hansknoechel.holyweather;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

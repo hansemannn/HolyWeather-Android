@@ -1,4 +1,4 @@
-package hansknoechel.de.holyweather;
+package de.hansknoechel.holyweather;
 
 import android.content.Context;
 import android.location.Location;

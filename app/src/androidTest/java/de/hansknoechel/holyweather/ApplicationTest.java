@@ -1,4 +1,4 @@
-package hansknoechel.de.holyweather;
+package de.hansknoechel.holyweather;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package hansknoechel.de.holyweather;
+package de.hansknoechel.holyweather;
 
 /**
  * Created by hans on 07.05.15.
