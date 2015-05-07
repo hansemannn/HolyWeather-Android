@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView android:text="CityName"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationName"
+        android:visibility="invisible"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal" />
+
+    <ProgressBar
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/activityIndicator"
+        android:indeterminateOnly="true"
+        android:keepScreenOn="true"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView android:text="0°"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationTemperature"
+        android:visibility="invisible"
+        android:layout_above="@id/locationName"
+        android:textSize="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
