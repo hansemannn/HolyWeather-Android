@@ -46,14 +46,15 @@ public class RequestManager {
                 try {
                     callback.onResponseFinished(response);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+
+                    callback.onResponseError(e.getLocalizedMessage());
                 }
             }
         }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println(error);
+                callback.onResponseError(error.getLocalizedMessage());
             }
         });
 

@@ -17,4 +17,11 @@ public interface RequestCallbackListener {
      * @see             org.json.JSONException
      */
     void onResponseFinished(JSONObject result) throws JSONException;
+
+    /**
+     * Returns the error if there is no respinse available.
+     *
+     * @param error     The error message.
+     */
+    void onResponseError(String error);
 }

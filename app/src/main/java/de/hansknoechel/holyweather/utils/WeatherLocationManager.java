@@ -41,7 +41,6 @@ public class WeatherLocationManager implements LocationListener {
      * Requests updates on the current location.
      */
     public void getCurrentLocation() {
-        System.out.println("getCurrentLocation");
 
         // If there is neither a gps nor a network connection, show error dialog
         if(this.isGPSEnabled == false || this.isNetworkEnabled == false) {
@@ -71,7 +70,6 @@ public class WeatherLocationManager implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        System.out.println("onLocationChanged");
         this.locationCallbackInterface.onLocationUpdated(location);
     }
 

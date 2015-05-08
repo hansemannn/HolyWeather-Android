@@ -94,6 +94,14 @@ public class MainActivity extends Activity {
                 toast.show();
 
             }
+
+            @Override
+            public void onResponseError(String error) {
+                activityIndicator.setVisibility(View.INVISIBLE);
+
+                Toast toast = Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT);
+                toast.show();
+            }
         });
     }
 

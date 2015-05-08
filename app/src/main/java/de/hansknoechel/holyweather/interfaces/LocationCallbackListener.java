@@ -19,7 +19,7 @@ public interface LocationCallbackListener {
     /**
      * Returns the error if there is no location available.
      *
-     * @param error     The current location of the device.
+     * @param error     The error message.
      */
     void onLocationNotAvailable(String error);
 }
