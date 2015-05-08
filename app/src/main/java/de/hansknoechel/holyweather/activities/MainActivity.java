@@ -1,7 +1,6 @@
 package de.hansknoechel.holyweather.activities;
 
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 
@@ -59,6 +59,14 @@ public class MainActivity extends Activity {
 
                 loadData();
             }
+
+            @Override
+            public void onLocationNotAvailable(String error) {
+                activityIndicator.setVisibility(View.INVISIBLE);
+
+                Toast toast = Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT);
+                toast.show();
+            }
         });
         this.locationManager.getCurrentLocation();
     }
@@ -81,7 +89,41 @@ public class MainActivity extends Activity {
                 locationName.setVisibility(View.VISIBLE);
                 locationTemperature.setVisibility(View.VISIBLE);
                 activityIndicator.setVisibility(View.INVISIBLE);
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Weather was updated!", Toast.LENGTH_SHORT);
+                toast.show();
+
             }
         });
+    }
+
+    /**
+     * Handles the selection of menu items inside the actionBar.
+     *
+     * @param item The clicked menu item.
+     *
+     * @return False to allow normal menu processing to proceed, true to consume it here.
+     **/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.opt_refresh:
+                locationManager.getCurrentLocation();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Inflates the menu on creation.
+     *
+     * @param menu The menu to be inflated.
+     *
+     * @return False to allow normal menu processing to proceed, true to consume it here.
+     **/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 }

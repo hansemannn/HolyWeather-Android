@@ -15,4 +15,11 @@ public interface LocationCallbackListener {
      * @see             android.location.Location
      */
     void onLocationUpdated(Location location);
+
+    /**
+     * Returns the error if there is no location available.
+     *
+     * @param error     The current location of the device.
+     */
+    void onLocationNotAvailable(String error);
 }
